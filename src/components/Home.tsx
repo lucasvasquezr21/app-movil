@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, ScrollView, RefreshControl, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-paper';
 import styles from './styles/homeStyles.js';
 
@@ -21,14 +21,14 @@ const Home = () => {
       contentContainerStyle={styles.scrollViewContent}
       refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
     >
+      <Text style={styles.title}>CityDat</Text>
       <View style={styles.container}>
-        <Text style={styles.title}>CityDat</Text>
-        <Card style={styles.card} onPress={handleCategoryPress}>
+        <TouchableOpacity style={styles.card} onPress={handleCategoryPress}>
           <Text style={styles.cardTitle}>Ver Alertas</Text>
-        </Card>
-        <Card style={styles.card} onPress={handleMaestroPress}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.card} onPress={handleMaestroPress}>
           <Text style={styles.cardTitle}>Ver Tareas</Text>
-        </Card>
+        </TouchableOpacity>
         <Text style={styles.title}>¡Importante!</Text>
         <Card style={styles.card}>
           <Text style={styles.cardTitle}>Alerta 1</Text>

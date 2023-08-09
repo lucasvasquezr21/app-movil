@@ -27,5 +27,6 @@ export default StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     padding: 20,
+    marginTop: 30,
   },
 });
