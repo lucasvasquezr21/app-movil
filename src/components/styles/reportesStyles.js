@@ -29,10 +29,23 @@ export default StyleSheet.create({
     padding: 20,
     marginTop: 30,
   },
-  reportImage: {
-    width: '60%',
-    height: 100,
-    borderRadius: 20,
+  buttonContainer: {
+    alignItems: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    marginVertical: 20,
+  },
+  inputContainer: {
+    width: '80%',
     marginBottom: 20,
+  },
+  input: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    fontSize: 16,
   },
 });

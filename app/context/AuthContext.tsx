@@ -39,7 +39,6 @@ export const AuthProvider = ({ children }: any) => {
                     token,
                     authenticated: true,
                 });
-
             }
         }
         loadToken();
@@ -48,7 +47,7 @@ export const AuthProvider = ({ children }: any) => {
 
     const register = async (email: string, password: string) => {
         try {
-            return await axios.post(`${API_URL}/auth/user/register`, { email, password });
+            return await axios.post(`${API_URL}/auth/vecino/register`, { email, password });
         } catch (e) {
             return { error: true, msg: (e as any).response.data.message };
         }
@@ -56,7 +55,7 @@ export const AuthProvider = ({ children }: any) => {
 
     const login = async (email: string, password: string) => {
         try {
-          const result = await axios.post(`${API_URL}/auth/user/login`, { email, password });
+          const result = await axios.post(`${API_URL}/auth/vecino/login`, { email, password });
           
         //   console.log(result);
       

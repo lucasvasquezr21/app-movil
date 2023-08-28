@@ -1,10 +1,10 @@
-// homeStyles.js
+// alertStyles.js
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
     flexGrow: 1,
-    alignItems: 'auto',
+    // alignItems: 'auto',
     padding: 30,
     width: '100%',
   },
@@ -28,11 +28,5 @@ export default StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     marginTop: 30,
-  },
-  reportImage: {
-    width: '60%',
-    height: 100,
-    borderRadius: 20,
-    marginBottom: 20,
   },
 });

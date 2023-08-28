@@ -6,6 +6,8 @@ import { CommonActions } from '@react-navigation/native';
 import Home from './Home';
 import Categorias from './Categorias';
 import Settings from './Settings';
+import Reportes from './Reportes';
+import Alertas from './Alertas';
 import styles from './styles/navigationStyles';
 
 const Tab = createBottomTabNavigator();
@@ -39,13 +41,23 @@ const Navigation = () => {
         })}
       />
       <Tab.Screen
-        name="Categorias"
-        component={Categorias}
+        name="Reportes"
+        component={Reportes}
+        options={({ route }) => ({
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="camera" size={size} color={color} />
+          ),
+          animationTypeForReplace: getAnimationTypeForReplace(route.name, 'Reportes'),
+        })}
+      />
+      <Tab.Screen
+        name="Alertas"
+        component={Alertas}
         options={({ route }) => ({
           tabBarIcon: ({ color, size }) => (
             <Icon name="alert" size={size} color={color} />
           ),
-          animationTypeForReplace: getAnimationTypeForReplace(route.name, 'Categorias'),
+          animationTypeForReplace: getAnimationTypeForReplace(route.name, 'Alertas'),
         })}
       />
       <Tab.Screen
