@@ -6,12 +6,12 @@ import styles from './styles/reportesStyles.js';
 import { useAuth } from '../../app/context/AuthContext';
 
 const Reportes = () => {
-  let url = '';
   const { authState, onLogout } = useAuth();
   const [title, setTitle] = useState('');
   const [usuario, setUsuario] = useState('');
   const [description, setDescription] = useState('');
   const [ubication, setUbication] = useState('');
+  const [comuna, setComuna] = useState('');
   const [reportes, setReportes] = useState([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [imageUri, setImageUri] = useState(null);
@@ -22,7 +22,6 @@ const Reportes = () => {
   const fetchReportes = async () => {
     try {
       setIsRefreshing(true);
-
       if (authState.token) {
         const response = await axios.get('https://fix-api.fly.dev/reportes', {
           headers: {
@@ -92,6 +91,7 @@ const Reportes = () => {
         description,
         ubication,
         img: imageUrl,
+        comuna,
       };
   
       const response = await axios.post('https://fix-api.fly.dev/reportes', reportData, {
@@ -108,6 +108,7 @@ const Reportes = () => {
       setUsuario('');
       setDescription('');
       setUbication('');
+      setComuna('');
   
       // Actualizar la lista de reportes
       fetchReportes();
@@ -145,6 +146,12 @@ const Reportes = () => {
         placeholder="Ubicación"
         value={ubication}
         onChangeText={setUbication}
+      />
+        <TextInput
+        style={styles.input}
+        placeholder="Comuna"
+        value={comuna}
+        onChangeText={setComuna}
       />
       <View style={styles.buttonContainer}>
         <Button title="Tomar Foto" onPress={handlePickImage} />

@@ -1,76 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { View , Text , ScrollView, RefreshControl, TouchableOpacity, Image } from 'react-native';
-import { Card  } from 'react-native-paper';
-import axios from 'axios';
-import styles from './styles/homeStyles.js';
+import { View, Text } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import { useAuth } from '../../app/context/AuthContext';
+import * as Location from 'expo-location';
+import homeStyles from './styles/homeStyles'; // Importa los estilos desde el archivo
 
 const Home = () => {
-  const { authState } = useAuth(); // Obtén el estado de autenticación del contexto
-  const [reportes, setReportes] = useState([]);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-
-  const fetchReportes = async () => {
-    try {
-      setIsRefreshing(true);
-
-      if (authState.token) {
-        const response = await axios.get('https://fix-api.fly.dev/reportes', {
-          headers: {
-            Authorization: `Bearer ${authState.token}`,
-          },
-        });
-        setReportes(response.data);
-      }
-
-      setIsRefreshing(false);
-    } catch (error) {
-      console.error(error);
-      setIsRefreshing(false);
-    }
-  };
-
-  const handleCategoryPress = () => {
-    console.log('Redireccionar a la página de Categorías');
-  };
-
-  const handleAlertaPress = () => {
-    console.log('Redireccionar a la página de Alertas');
-  };
-
-  const onRefresh = () => {
-    fetchReportes();
-  };
+  const { authState } = useAuth();
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-    fetchReportes();
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let currentLocation = await Location.getCurrentPositionAsync({});
+      setLocation(currentLocation.coords);
+    })();
   }, []);
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.scrollViewContent}
-      refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />}>
-      <Text style={styles.title}>CityDat</Text>
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.card} onPress={handleCategoryPress}>
-          <Text style={styles.cardTitle}>Ver Categorías</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card} onPress={handleAlertaPress}>
-          <Text style={styles.cardTitle}>Ver Alertas</Text>
-        </TouchableOpacity>
-        <Text style={styles.title}>Últimos Reportes</Text>
-        {reportes.map((reporte) => (
-          <Card key={reporte._id} style={styles.card}>
-            <Card.Content>
-              <Text style={styles.reportTitle}>{reporte.title}</Text>
-              <Text style={styles.reportDescription}>Descripción: {reporte.description}</Text>
-              <Text style={styles.reportLocation}>Ubicación: {reporte.ubication}</Text>
-              <Image source={{ uri: reporte.img }} style={styles.reportImage} />
-            </Card.Content>
-          </Card>
-        ))}
-      </View>
-    </ScrollView>
+    <View style={homeStyles.container}>
+      <Text style={homeStyles.title}>CityDat</Text>
+      {location && (
+        <MapView
+          style={homeStyles.map}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+          <Marker
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+            title="Mi ubicación"
+          />
+        </MapView>
+      )}
+    </View>
   );
 };
 

@@ -21,7 +21,7 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   image: {
-    width: 400,
+    width: 300,
     height: 200,
     alignItems: 'center',
     marginTop: 100,

@@ -1,38 +1,38 @@
-// homeStyles.js
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const homeStyles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    alignItems: 'auto',
-    padding: 30,
+    flex: 1,
     width: '100%',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    height: '100%',
   },
   title: {
+    position: 'absolute',
+    top: 50,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
     fontSize: 40,
     fontWeight: 'bold',
-    marginBottom: 10,
+    backgroundColor: 'transparent',
+    zIndex: 1,
+    color: '#fe2d6f',
   },
-  card: {
-    width: '100%',
-    marginBottom: 20,
-    padding: 20,
-    elevation: 4,
+  button: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    padding: 10,
+    backgroundColor: 'blue',
+    borderRadius: 5,
   },
-  cardTitle: {
-    fontSize: 20,
+  buttonText: {
+    color: 'white',
     fontWeight: 'bold',
   },
-  scrollViewContent: {
-    flexGrow: 1,
-    alignItems: 'center',
-    padding: 20,
-    marginTop: 30,
-  },
-  reportImage: {
-    width: '60%',
-    height: 100,
-    borderRadius: 20,
-    marginBottom: 20,
-  },
 });
+
+export default homeStyles;

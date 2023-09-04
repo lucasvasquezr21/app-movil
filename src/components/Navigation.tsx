@@ -1,13 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BottomNavigation } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { CommonActions } from '@react-navigation/native';
 import Home from './Home';
-import Categorias from './Categorias';
-import Settings from './Settings';
 import Reportes from './Reportes';
 import Alertas from './Alertas';
+import ListarReportes from './listarReportes';
+import Settings from './Settings';
 import styles from './styles/navigationStyles';
 
 const Tab = createBottomTabNavigator();
@@ -25,10 +23,11 @@ const getAnimationTypeForReplace = (previousRoute, nextRoute) => {
 const Navigation = () => {
   return (
     <Tab.Navigator
-    screenOptions={{
-      headerShown: false,
-      tabBarShowLabel: false
-    }}
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBar,
+      }}
     >
       <Tab.Screen
         name="Home"
@@ -41,13 +40,23 @@ const Navigation = () => {
         })}
       />
       <Tab.Screen
-        name="Reportes"
+        name="GenerarReportes"
         component={Reportes}
         options={({ route }) => ({
           tabBarIcon: ({ color, size }) => (
             <Icon name="camera" size={size} color={color} />
           ),
           animationTypeForReplace: getAnimationTypeForReplace(route.name, 'Reportes'),
+        })}
+      />
+      <Tab.Screen
+        name="ListarReportes"
+        component={ListarReportes}
+        options={({ route }) => ({
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="file-document" size={size} color={color} />
+          ),
+          animationTypeForReplace: getAnimationTypeForReplace(route.name, 'ListarReportes'),
         })}
       />
       <Tab.Screen

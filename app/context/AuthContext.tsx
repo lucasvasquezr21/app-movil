@@ -5,11 +5,24 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
+
+interface User{
+    id: number;
+    email: string;
+    password: string;
+    comuna: string;
+}
+
 interface AuthProps {
-    authState?: { token: string | null; authenticated: boolean | null };
+    authState?: {
+        token: string | null;
+        authenticated: boolean | null;
+        user: User | null;
+    };
     onRegister?: (email: string, password: string) => Promise<any>;
     onLogin?: (email: string, password: string) => Promise<any>;
     onLogout?: () => Promise<any>;
+    updateUser?: (user: User) => void;
 }
 
 const TOKEN_KEY = 'my-jwt';
@@ -24,9 +37,11 @@ export const AuthProvider = ({ children }: any) => {
     const [authState, setAuthState] = useState<{
         token: string | null;
         authenticated: boolean | null;
+        user: User | null;
     }>({
         token: null,
         authenticated: null,
+        user: null, 
     });
 
     useEffect(() => {
@@ -38,6 +53,7 @@ export const AuthProvider = ({ children }: any) => {
                 setAuthState({
                     token,
                     authenticated: true,
+                    user: null,
                 });
             }
         }
@@ -56,13 +72,12 @@ export const AuthProvider = ({ children }: any) => {
     const login = async (email: string, password: string) => {
         try {
           const result = await axios.post(`${API_URL}/auth/vecino/login`, { email, password });
-          
-        //   console.log(result);
       
           if (result && result.data) {
             setAuthState({
               token: result.data.accessToken,
               authenticated: true,
+              user: result.config.data,
             });
       
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.accessToken}`;
@@ -70,6 +85,7 @@ export const AuthProvider = ({ children }: any) => {
             await SecureStore.setItemAsync(TOKEN_KEY, result.data.accessToken);
       
             console.log("Login successful");
+            console.log(result.config.data);
             return result;
           } else {
             return { error: true, msg: 'No se pudo iniciar sesión' };
@@ -88,13 +104,23 @@ export const AuthProvider = ({ children }: any) => {
             setAuthState({
                 token: null,
                 authenticated: false,
+                user: null,
             });
     };
+
+    const updateUser = (user: User) => {
+        setAuthState({
+            ...authState,
+            user: user,
+        });
+    };
+
 
     const value = {
         onRegister: register,
         onLogin: login,
         onLogout: logout,
+        updateUser: updateUser,
         authState
     };
 

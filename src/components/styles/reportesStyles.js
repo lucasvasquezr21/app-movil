@@ -48,4 +48,9 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 16,
   },
+  reportImage: {
+    width: 200,
+    height: 200,
+    marginVertical: 20,
+  },
 });

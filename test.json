@@ -1,0 +1,114 @@
+{
+    "config": {
+        "adapter": "xhr",
+        "data": "{\"email\":\"a@b.com\",\"password\":\"1234\"}",
+        "env": {
+            "Blob": [Function Blob
+            ],
+            "FormData": [Function FormData
+            ]
+        },
+        "headers": [Object
+        ],
+        "maxBodyLength": -1,
+        "maxContentLength": -1,
+        "method": "post",
+        "timeout": 0,
+        "transformRequest": [
+            [Function transformRequest
+            ]
+        ],
+        "transformResponse": [
+            [Function transformResponse
+            ]
+        ],
+        "transitional": {
+            "clarifyTimeoutError": false,
+            "forcedJSONParsing": true,
+            "silentJSONParsing": true
+        },
+        "url": "https://fix-api.fly.dev/auth/vecino/login",
+        "validateStatus": [Function validateStatus
+        ],
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN"
+    },
+    "data": {
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZWNpbm9JZCI6IjY0ZWFkZTA3Y2VlNDllOTdmZDQzMzQ5NyIsImlhdCI6MTY5MzYyMzI5OSwiZXhwIjoxNjkzNjI2Mjk5fQ.IzKtW-p72r_S3msgUDi_7swwGzBrD29ebEFD_z5GMNg"
+    },
+    "headers": {
+        "access-control-allow-origin": "*",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Sat, 02 Sep 2023 02:54:59 GMT",
+        "etag": "W/\"c5-nSEM2Hvl0784salAGAxrVgXYuQ4\"",
+        "fly-request-id": "01H99X1BG51GMS8QCTZDWMSJFW-scl",
+        "server": "Fly/8770e2a7 (2023-09-01)",
+        "via": "2 fly.io",
+        "x-powered-by": "Express"
+    },
+    "request": {
+        "DONE": 4,
+        "HEADERS_RECEIVED": 2,
+        "LOADING": 3,
+        "OPENED": 1,
+        "UNSENT": 0,
+        "_aborted": false,
+        "_cachedResponse": undefined,
+        "_hasError": false,
+        "_headers": {
+            "accept": "application/json, text/plain, */*",
+            "authorization": "",
+            "content-type": "application/json"
+        },
+        "_incrementalEvents": false,
+        "_lowerCaseResponseHeaders": {
+            "access-control-allow-origin": "*",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Sat, 02 Sep 2023 02:54:59 GMT",
+            "etag": "W/\"c5-nSEM2Hvl0784salAGAxrVgXYuQ4\"",
+            "fly-request-id": "01H99X1BG51GMS8QCTZDWMSJFW-scl",
+            "server": "Fly/8770e2a7 (2023-09-01)",
+            "via": "2 fly.io",
+            "x-powered-by": "Express"
+        },
+        "_method": "POST",
+        "_perfKey": "network_XMLHttpRequest_https://fix-api.fly.dev/auth/vecino/login",
+        "_performanceLogger": {
+            "_closed": false,
+            "_extras": [Object
+            ],
+            "_pointExtras": [Object
+            ],
+            "_points": [Object
+            ],
+            "_timespans": [Object
+            ]
+        },
+        "_requestId": null,
+        "_response": "{\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZWNpbm9JZCI6IjY0ZWFkZTA3Y2VlNDllOTdmZDQzMzQ5NyIsImlhdCI6MTY5MzYyMzI5OSwiZXhwIjoxNjkzNjI2Mjk5fQ.IzKtW-p72r_S3msgUDi_7swwGzBrD29ebEFD_z5GMNg\"}",
+        "_responseType": "",
+        "_sent": true,
+        "_subscriptions": [],
+        "_timedOut": false,
+        "_trackingName": "unknown",
+        "_url": "https://fix-api.fly.dev/auth/vecino/login",
+        "readyState": 4,
+        "responseHeaders": {
+            "access-control-allow-origin": "*",
+            "content-type": "application/json; charset=utf-8",
+            "date": "Sat, 02 Sep 2023 02:54:59 GMT",
+            "etag": "W/\"c5-nSEM2Hvl0784salAGAxrVgXYuQ4\"",
+            "fly-request-id": "01H99X1BG51GMS8QCTZDWMSJFW-scl",
+            "server": "Fly/8770e2a7 (2023-09-01)",
+            "via": "2 fly.io",
+            "x-powered-by": "Express"
+        },
+        "responseURL": "https://fix-api.fly.dev/auth/vecino/login",
+        "status": 200,
+        "timeout": 0,
+        "upload": {},
+        "withCredentials": true
+    },
+    "status": 200,
+    "statusText": undefined
+}
